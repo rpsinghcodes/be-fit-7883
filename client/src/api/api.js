@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://be-fit-server.onrender.com';
 
 export const fetchDishes = async () => {
   try {
