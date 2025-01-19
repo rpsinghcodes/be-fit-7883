@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import 'dotenv/config'
 import foodRouter from "./routes/foods.routes.js";
+import cors from "cors";
 import userRouter from "./routes/users.routes.js";
 import ErrorHandler from "./middlewares/handleError.middleware.js";
 
@@ -11,6 +12,10 @@ mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log("connected"))
 .catch(err => console.log(err));
 
+app.use(cors({
+    origin: "*", // Allow all
+    credentials: true, // Allow cookies or authorization headers
+}));
 app.use(express.json());
 
 app.use("/food", foodRouter);

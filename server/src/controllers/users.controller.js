@@ -47,7 +47,7 @@ const login = async (req, res, next) => {
 const postFood = async (req, res, next) => {
     try {
         const {email} = req.body;
-        await validateUser(email);
+        // await validateUser(email);
         const {dishName, items} = req.body;
         console.log(dishName, items);
         const foodData = await userModel.updateOne({email}, {$push:{foodHistory: {dishName, items: items}}});
@@ -71,6 +71,7 @@ const postFood = async (req, res, next) => {
 
 const loginAdmin = async (req, res, next) => {
     try {
+        console.log('req.body: ', req.body);
         const {email, password} = req.body;
         console.log(email, password)
         const data = await userModel.findOne({email, password}) || [];
@@ -85,5 +86,15 @@ const loginAdmin = async (req, res, next) => {
     }
 }
 
+const updateProifle = async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        await userModel.updateOne({id}, req.body);
+        return res.status(200).json({message:"Profile updated successfully."});
+    } catch (error) {
+        next(error);
+    }
+}
 
-export {signUp, login, postFood, loginAdmin};
+
+export {signUp, login, postFood, loginAdmin, updateProifle};

@@ -1,15 +1,17 @@
 import express from "express";
-import { getFood, postFood, getAll, updateFood } from "../controllers/foods.controller.js";
+import { getFood, postFood, getAll, updateFood, deleteFood } from "../controllers/foods.controller.js";
 
 const foodRouter = express.Router();
 
-foodRouter.get("/:foodName", getFood);
+foodRouter.get("/:foodName", getFood); // get one food -> /food/:foodName  (e.g: /food/burger)
 
-foodRouter.get("/", getAll);
+foodRouter.get("/", getAll); // get all foods -> /food/
 
-foodRouter.put("/", updateFood);
+foodRouter.delete("/:id", deleteFood); // delete food -> /food/:id
 
-foodRouter.post("/", postFood);
+foodRouter.put("/", updateFood); // update food -> /food/
+
+foodRouter.post("/", postFood); // post food -> /food/
 
 
 

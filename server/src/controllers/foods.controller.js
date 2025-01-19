@@ -42,7 +42,7 @@ const getAll = async (req, res, next) => {
 const postFood = async (req, res, next) => {
     try {
         const {email} = req.body;
-        await validateAdmin(email); // checking if it is admin or not;
+        // await validateAdmin(email); // checking if it is admin or not;
         const {dishName, items} = req.body;
         console.log(dishName, items);
         
@@ -54,5 +54,18 @@ const postFood = async (req, res, next) => {
     }
 }
 
+const deleteFood = async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        const {email} = req.body;
+        // await validateAdmin(email);
+        await FoodModel.deleteOne({_id: id});
+        
+        res.status(200).json({message:"Food deleted successfully."});
+    } catch (error) {
+        next(error);
+    }
+}
 
-export {getFood, postFood, getAll, updateFood};
+
+export {getFood, postFood, getAll, updateFood, deleteFood};

@@ -7,6 +7,7 @@ async function validateAdmin(email) {
         const error = new Error("Admin not found");
         error.message = "Admin not found";
         error.statusCode = 404; // Not Found
+        console.log('----------------------------------------\n data from validateAdmin file')
         throw error;
     }else{
         return data;
