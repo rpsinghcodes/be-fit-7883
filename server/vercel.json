@@ -1,0 +1,5 @@
+{
+    "version": 2,
+    "builds": [{ "src": "./index.is", "use": "avercel/node" }],
+    "routes": [{ "src": "/(.*)", "dest": "/" }]
+    }
